@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='click'>Click</div>
+    <script type="text/javascript">
+        var btn = document.getElementById('click');
+        btn.onclick = function () {
+            let option = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    // 'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                cache: 'no-cache',
+                mode: "cors",
+                // body: JSON.stringify({})
+            },
+                url = `http://localhost:1111/httppost`;
+            fetch(url, option)
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    </script>
+</body>
+
+</html>
