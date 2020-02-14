@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='post-click'>Post Click</div>
+    <div id='get-click'>Get Click</div>
+    <div id='nginx-click'>Nginx Click</div>
+    <script type="text/javascript">
+        var PostClick = document.getElementById('post-click');
+        var GetClick = document.getElementById('get-click');
+        var NginxClick = document.getElementById('nginx-click');
+        PostClick.onclick = function () {
+            let option = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    // 'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                cache: 'no-cache',
+                mode: "cors",
+                // body: JSON.stringify({})
+            },
+                url = `http://localhost:1111/httppost`;
+            fetch(url, option)
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+
+        GetClick.onclick = function () {
+            let option = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    // 'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                cache: 'no-cache',
+                mode: "cors",
+                // body: JSON.stringify({})
+            },
+                url = `http://localhost:1111/httpget`;
+            fetch(url, option)
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+
+        var script = document.createElement('script');
+        script.type = 'text/javascript';
+        script.src = 'http://127.0.0.1:1111/jsonp?callback=handleCallback';
+        document.head.appendChild(script);
+        function handleCallback(res) {
+            console.log(JSON.stringify(res));
+        }
+        
+        NginxClick.onclick = function () {
+            let option = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                    // 'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                cache: 'no-cache',
+                mode: "no-cors",
+                // body: JSON.stringify({})
+            },
+                url = `http://localhost/nginxrequest`;
+            fetch(url, option)
+                .then(res => {
+                    return res.json();
+                })
+                .then(res => {
+                    console.log(res);
+                })
+                .catch(e => {
+                    console.log(e);
+                })
+        }
+    </script>
+</body>
+
+</html>
